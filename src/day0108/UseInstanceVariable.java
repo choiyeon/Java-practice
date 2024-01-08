@@ -15,6 +15,14 @@ public class UseInstanceVariable {
 //	private int c;
 	
 	int i;
+	
+	//default value
+	int a;//정수 - 0
+	char b;//문자 \u0000
+	boolean c;//false
+	double d;//0.0
+	static UseInstanceVariable s;
+	
 	public void test() {
 		i=10;//동일 영역(instance영역)에서는 객체명 없이 사용할 수 있다.
 	}
@@ -35,6 +43,14 @@ public class UseInstanceVariable {
 		//객체가 다르기 때문에 객체마다 다른 값을 가지게 된다.
 		System.out.println("uiv객체가 가진 i변수 : " + uiv.i);
 		System.out.println("uiv2객체가 가진 i변수 : " + uiv2.i);
+		
+		System.out.println("기본형");
+		System.out.println("정수: " + uiv.a);
+		System.out.println("문자 : " + uiv.b);
+		System.out.println("실수 : " + uiv.d);
+		System.out.println("불린 : " + uiv.c);
+		System.out.println("참조형 : " + uiv.s);
+		
 	}//main
 
 }//class

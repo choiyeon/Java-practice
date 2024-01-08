@@ -13,13 +13,13 @@ public class TestDoWhile {
 
 	public static void main(String[] args) {
 
-		int i=0;
+		int i = 0;
 		do {
 			i++;
 			System.out.println(i);
-		}while (i < 10);
-		
-		//1~100까지 합 출력
+		} while (i < 10);
+
+		// 1~100까지 합 출력
 		int j = 0;
 		int sum = 0;
 		do {
@@ -28,6 +28,6 @@ public class TestDoWhile {
 			System.out.println("j는 " + j + "현재 합은 " + sum);
 		} while (j < 101);
 		System.out.println("1부터 100까지의 합은 " + sum);
-	}//main
+	}// main
 
-}//class
+}// class
