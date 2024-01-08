@@ -16,6 +16,14 @@ public class TestWhile {
 			System.out.println("i=" + i);//반복수행 문장들
 			i++;//증감소식
 		} // end while
+		
+		//구구단 5단 출력
+		 i = 1;// 초기값
+		while (i < 10) {
+			System.out.println("5 x " + i + " = " + 5*i);//반복수행 문장들
+			i++;//증감소식
+		} // end while
+		
 
 	}// main
 
