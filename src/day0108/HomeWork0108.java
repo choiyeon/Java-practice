@@ -18,17 +18,17 @@ package day0108;
  */
 public class HomeWork0108 {
 
-	public void name() {
+	public void name() {//고정일
 		System.out.print("1. 자신의 이름을 출력하는 method : ");
 		System.out.println("최수연");
 	}
 
-	public void lastName(String i) {
+	public char lastName() {//고정값
 		System.out.print("2. 자신의 이름 중에 성을 반환하는 method : ");
-		System.out.println(i);
+		return '최';
 	}
 
-	public void score(int i) {
+	public void score(int i) {//가변일
 		System.out.println("3. 점수를 입력받아 점수의 판정을 출력하는 method : ");
 		if (i > -1 && i < 101) {
 			if (i > -1 && i < 40) {
@@ -43,7 +43,7 @@ public class HomeWork0108 {
 		}
 	}
 
-	public void string(char i) {
+	public void string(char i) {//가변일
 		System.out.println("4. 문자를 입력받아 해당 문자가 대문자, 소문자, 숫자인지를 판단하여 출력하는 method : ");
 		if (i > 47 && i < 123) {
 			if (i > 47 && i < 58) {
@@ -58,27 +58,47 @@ public class HomeWork0108 {
 		}
 	}
 
-	public int birth(int i) {
+	public int birth(int i) {//가변 값
 		System.out.println("5. 태어난 해를 입력받아 나이를 반환하는 method : ");
 		int age = (2024 - i);
 		return (age);
 	}
 
-	public int number(int i, int j, int k) {
+	public int number(int num, int num2, int num3) {
 		int result = 0;
 		System.out.println("6. 3개의 수를 입력 받아 가장 작은 수를 반환하는 method : ");
-		if (i < j && i < k) {
-			result = i;
+		// 입력받은 수 중에 중복값이 있을 때
+		if (num == num2) {
+			if (num < num3) {
+				result = num;
+				return (result);
+			} else {
+				result = num3;
+				return (result);
+			}
+		} else if (num == num3 && num2 == num3) {
+			if (num < num2) {
+				result = num;
+				return (result);
+			} else {
+				result = num2;
+				return (result);
+			}
+			// 입력받은 값 중 중복되는 값이 없을 때
+		} else if (num < num2 && num < num3) {
+			result = num;
 			return (result);
-		} else if (j < i && j < k) {
-			result = j;
-			return (result);
-		} else {
-
-			result = k;
-			return (result);
+		} else if (num2 < num && num3 < num) {
+			if (num2 < num3) {
+				result = num2;
+				return (result);
+			} else {
+				result = num3;
+				return (result);
+			}
 		}
-	}
+		return result;
+	}// end number
 
 	public static void main(String[] args) {
 
@@ -88,7 +108,11 @@ public class HomeWork0108 {
 		work.name();
 
 		// 2. 자신의 이름 중에 "성"을 반환
-		work.lastName("최");
+		
+		char myName = work.lastName(); 
+		System.out.println(myName);
+//		System.out.println(work.lastName()); 이것도 가능
+				
 
 		// 3. 점수를 입력받아 점수의 판정을 출력하는 method
 		work.score(1);
@@ -101,8 +125,8 @@ public class HomeWork0108 {
 		System.out.println(born + "살 입니다.");
 
 		// 6. 3개의 수를 입력 받아 가장 "작은 수"를 반환하는 method
-		int num = work.number(10, 2, 13);
-		System.out.println("가장 작은 수 : " + num);
+		int smallest = work.number(0, 0, 0);
+		System.out.println("가장 작은 수 : " + smallest);
 		
 		
 	}
