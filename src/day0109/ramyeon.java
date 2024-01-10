@@ -4,6 +4,19 @@ public class Ramyeon {
 	private int spicy;
 	private double time;
 	private String name;
+	
+	/**
+	 * 라면 객체를 생성할 때 사용하는 Overloading 생성자
+	 * @param spicy 맵기 스코빌지수
+	 * @param name 라면 이름
+	 * @param time 조리 시간
+	 */
+	public Ramyeon(int spicy, String name , double time) {
+		
+		this.spicy = spicy;
+		this.name = name;
+		this.time = time;
+	}
 
 	/**
 	 * 라면 객체의 맵기 지수 설정 
