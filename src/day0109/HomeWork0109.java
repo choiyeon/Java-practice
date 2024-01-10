@@ -7,12 +7,13 @@ package day0109;
 public class HomeWork0109 {
 	public static void main(String[] args) {
 
-		ramyeon noodle = new ramyeon();
-		noodle.setSpicy(10);
+		Ramyeon noodle = new Ramyeon();
+		noodle.setSpicy(100000);
 		noodle.setName("신라면");
-//	black.setColor("그레이");
-		System.out.printf("맴기지수 %d스코빌, 라면 이름 %s 라면 \n", noodle.getSpicy(), noodle.getName());// , 포장지 색 %s 색
-																								// black.getColor()
+		noodle.setTime(4.5);
+		
+		System.out.printf("맴기지수 : %d스코빌, 라면 이름 : \"%s\", %s 라면의 적정 조리시간 : %.1f 분 \n", noodle.getSpicy(), noodle.getName(), noodle.getName(), noodle.getTime());
+																								
 
 	}
 }
