@@ -4,7 +4,6 @@ package day0110;
  *method의 매개변수가 기본형 데이터 형을 사용하면 입력되는 값은 복사되어 들어간다. 
  */
 public class CallByValue {
-
 	
 	/**
 	 * i와 j를 입력받아서 두 변수의 값을 바꾸는 일.

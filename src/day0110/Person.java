@@ -21,9 +21,7 @@ public class Person {
 	 * 눈2개, 코1개, 입1개인 사람 객체를 생성할 때 사용하는 기본 생성자
 	 */
 	public Person() {
-		eye = 2;
-		nose = 1;
-		mouth = 1;
+		this(2, 1, 1);
 	}
 	
 	/**
@@ -33,9 +31,9 @@ public class Person {
 	 * @param mouth 입의 수
 	 */
 	public Person(int eye, int nose, int mouth) {
-		this.eye = eye;
-		this.nose = nose;
-		this.mouth = mouth;
+		setEye(eye);
+		setNose(nose);
+		setMouth(mouth);
 	}
 	
 	/**
