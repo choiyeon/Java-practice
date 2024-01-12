@@ -30,12 +30,23 @@ package day0112;
 public class UseIdHomeWork {
 
 	public static void main(String[] args) {
-		String idNum = "2401113456789";
+		//주민번호 입력
+		String idNum = "950101-1234567";
 		//객체생성
 		IdHomeWork useId = new IdHomeWork(idNum);
-
-		if (useId.checkIdNum()) {
-			if
+		
+		//method 호출
+		if (useId.checkIdNum()) {//2. 주민번호 14자리 체크
+			if(useId.checkHyphen()) {//3. 7번째 자리가 '-'인지 체크
+				System.out.println(useId.idBirth());//4. 생일 출력
+				System.out.println(useId.idAge());//5. 나이 출력
+				System.out.println(useId.idSex());//6. 성별 출력
+				System.out.println(useId.idZodiac());//7. 띠 출력
+			}else {
+				System.out.println("'-'의 위치가 올바르지 않습니다.");
+			}
+		}else {
+			System.out.println("주민번호의 자릿수가 잘못되었습니다.");
 		}
 	}//main
 }//class
