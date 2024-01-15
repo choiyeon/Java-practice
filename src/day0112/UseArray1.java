@@ -43,7 +43,8 @@ public class UseArray1 {
 		System.out.println("---------------------------------------------");
 		String[] nameArr = {"루피", "샹크스", "나미", "조로", "쵸파"};
 		String[] addrArr = {"서울시 강남구 역삼도", "서울시 동대문구 동대문동", "인천시 미추홀구", "서울특별시 구로구", "수원시 영통구 영통동"};
-		int[] scoreArr = {94, 95, 75, 83, 100};
+		int[] scoreArr = {94, 95, 75, 83, 100};//new int[]를 생략
+//		int[] scoreArr = new int[]{94, 95, 75, 83, 100};//new int[]를 명시, [5] 방을 명시하면 error
 		int top = scoreArr[0];
 		int flow = scoreArr[0];
 		
