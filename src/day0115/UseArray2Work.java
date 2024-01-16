@@ -21,8 +21,7 @@ public class UseArray2Work {
 		int koreanTotal = 0;
 		int englishTotal = 0;
 		int mathTotal = 0;
-		int highestTotal = 0;
-		int topStudentIndex = 0;
+		int topStudentIndex = highestStudent(scoreArr);
 
 		for (int i = 0; i < scoreArr.length; i++) {
 			System.out.printf("%d\t%s\t", i + 1, namesArr[i]);
@@ -33,16 +32,11 @@ public class UseArray2Work {
 
 			int studentTotal = totalScore(scoreArr[i]);
 
-			if (studentTotal > highestTotal) {
-				highestTotal = studentTotal;
-				topStudentIndex = i;
-			} // end for
-
 			koreanTotal += scoreArr[i][0];// 국어점수
 			englishTotal += scoreArr[i][1];// 영어점수
 			mathTotal += scoreArr[i][2];// 수학점수
 
-			System.out.print(totalScore(scoreArr[i]));// 인당 총점
+			System.out.print(studentTotal);// 인당 총점
 			System.out.printf("\t%.2f\n", (double) studentTotal / scoreArr[0].length);// 인당 평균
 		} // end for
 
@@ -51,7 +45,7 @@ public class UseArray2Work {
 		System.out.printf("\t평균 \t%.2f\n", (double) (koreanTotal / namesArr.length));// 국어만 평균
 
 		System.out.printf("1등학생의 번호[%d], 이름[%s], 점수[%.2f]\n", topStudentIndex + 1, namesArr[topStudentIndex],
-				(double) highestTotal / scoreArr[0].length);// 1등학생
+				(double) totalScore(scoreArr[topStudentIndex]) / scoreArr[0].length);// 1등학생
 	}// scoreProcess
 
 	/**
@@ -66,6 +60,27 @@ public class UseArray2Work {
 		} // end for
 		return total;
 	}// totalScore
+
+	/**
+	 * 총점을 기준으로 1등 학생의 인덱스를 반환
+	 * 
+	 * @param scoreArr 학생 점수 배열
+	 * @return 1등 학생의 인덱스
+	 */
+	public int highestStudent(int[][] scoreArr) {
+		int highestTotal = 0;
+		int topStudentIndex = 0;
+
+		for (int i = 0; i < scoreArr.length; i++) {
+			int studentTotal = totalScore(scoreArr[i]);
+
+			if (studentTotal > highestTotal) {
+				highestTotal = studentTotal;
+				topStudentIndex = i;
+			}// end if
+		}//end for
+		return topStudentIndex;
+	}// highestStudent
 
 	public static void main(String[] args) {
 
