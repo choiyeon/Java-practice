@@ -1,4 +1,4 @@
-package day0116;
+package day0117;
 
 /**
  * 사람의 공통 특징은 부모클래스인 person에 정의되어있고, <br>
@@ -46,6 +46,12 @@ public class HongGilDong extends Person{
 	public int getLevel() {
 		return level;
 	}
+	
+
+	@Override
+	public String eat() {
+		return getName() + "이 집에서 밥 먹는다.";
+	}//eat
 	
 	/**
 	 *식당에서 화폐단위가 원인 일에서 주막에서 화폐단위가 푼으로 변경되도록 overrride

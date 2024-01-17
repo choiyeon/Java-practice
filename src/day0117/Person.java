@@ -1,7 +1,10 @@
-package day0116;
+package day0117;
 
 /**
- *사람을 추상화하여 구현하는 클래스
+ *사람을 추상화하여 구현하는 클래스 => 공통 특징만 정리
+ *
+ *추상클래스로 변환(추상클래스=>상속관계에서 부모 클래스를 만들 때 사용.)
+ *
  *명사적 특징 : 눈, 코, 입
  *동사적 특징 : 먹는 일
  *
@@ -11,7 +14,7 @@ package day0116;
  * 객체명.메소드()를 호출하여 사용
  */
 
-public class Person {
+public abstract class Person {
 
 	private int eye, nose, mouth, hight;
 	private String name;
@@ -117,22 +120,20 @@ public class Person {
 	}//getName
 	
 	/**
-	 * 사람의 동사적인 특징중 집에서 밥을 먹는 일을 구현한 method
-	 * @return 밥을 먹는 행동
+	 * 사람의 동사적인 특징중 집에서 먹는 일을 정의한 method
+	 * 집에서 먹는 일은 자식 클래스에서 자신에 맞게 정의
+	 * @return 집에서 먹는 행동
 	 */
-	public String eat() {
-		return getName() + "이(가) 집에서 밥을 먹는다.";
-	}//name + "이(가) 집에서 밥을 먹는다.";
+	public abstract String eat();
 	
 	/**
-	 * 사람의 동사적인 특징중 밖에서 밥을 먹는 일을 구현한 method
+	 * 사람의 동사적인 특징중 외부에서 사먹는 일을 정의한 method
+	 * 밖에서 사먹는 일은 자식 클래스에서 자신에 맞게 정의
 	 * @param menu 음식 종류
 	 * @param price 음식 가격
-	 * @return 밥을 먹는 행동
+	 * @return 사먹는 행동
 	 */
-	public String eat(String menu, int price) {
-		return name + "이(가) 식당에서 " + menu + "인 음식을 " + price + "원을 내고 사먹는다.";
-	}//eat
+	public abstract String eat(String menu, int price);
 	
 	@Override
 	public String toString () {

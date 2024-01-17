@@ -1,4 +1,4 @@
-package day0116;
+package day0117;
 
 /**
  * 사람의 공통 특징은 부모클래스인 person에 정의되어있고, <br>
@@ -47,8 +47,7 @@ public class Clark extends Person {
 	
 	@Override
 	public String eat(String menu, int price) {
-		// TODO Auto-generated method stub
-		return "레스토랑에서 " + menu + "인 음식을 " + price + "원을 내고 사먹는다";
+		return getName() +"이 레스토랑에서 " + menu + "인 음식을 " + price + "$을 내고 사먹는다";
 	}
 	
 	

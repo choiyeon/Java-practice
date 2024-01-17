@@ -1,4 +1,4 @@
-package day0116;
+package day0117;
 
 /**
  * Person 클래스를 사용하기 위해 만드는 클래스<br>
@@ -28,16 +28,6 @@ public class UsePerson {
 		System.out.println(superman.power("크립토나이트"));
 		System.out.println(superman.power("짱돌"));
 		System.out.println(superman.power);
-		System.out.println("--------------------------------------------------");
-		
-		Choi choi = new Choi();
-		choi.setName("최수연");
-		System.out.printf("눈 %d, 코 %d, 입 %d, 이름 %s\n", choi.getEye(), choi.getNose(), choi.getMouth(), choi.getName());
-		
-		System.out.println(choi.jlpt(110));
-		System.out.println(choi.jlpt(90));
-		System.out.println(choi.jlpt(100));
-		System.out.println(choi.getJlpt());
 		System.out.println("--------------------------------------------------");
 		
 		//코드 재사용성 : 부모클래스에 존재하는 변수나 method를 자식클래스에서 자식의 객체명으로 사용하는 것.
