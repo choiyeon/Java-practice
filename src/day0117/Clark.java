@@ -1,11 +1,13 @@
 package day0117;
 
+import day0118.Fly;
+
 /**
  * 사람의 공통 특징은 부모클래스인 person에 정의되어있고, <br>
  * 자식 클래스인 Clark은 자신의 특별한 기능만 정의<br>
  * 힘의 레벨은 1~10까지 존재
  */
-public class Clark extends Person {
+public class Clark extends Person implements Fly{
 
 	public int power;
 	/**
@@ -48,6 +50,16 @@ public class Clark extends Person {
 	@Override
 	public String eat(String menu, int price) {
 		return getName() +"이 레스토랑에서 " + menu + "인 음식을 " + price + "$을 내고 사먹는다";
+	}
+
+	@Override
+	public String drivingForece() {
+		return "무릎을 꿇어서";
+	}
+
+	@Override
+	public String lift() {
+		return "망토를 매고";
 	}
 	
 	

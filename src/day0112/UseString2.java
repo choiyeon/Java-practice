@@ -79,6 +79,18 @@ public class UseString2 {
 		temp = String.valueOf(d);
 		System.out.println(temp);
 		//2024.01
+		
+//		String csvData = "Java,Oracle,JDBC";
+		String[] strArr = "Java,Oracle,JDBC".split(",");
+		for (String data : strArr) {
+			System.out.println(data);
+		}//for
+		
+		String[] strArr2 = "어쩔.저쩔.뇌절".split("[.]");
+		for (String data : strArr2) {
+			System.out.println(data);
+		}//for
+		
 				
 	}
 

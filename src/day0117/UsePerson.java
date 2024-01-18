@@ -39,6 +39,10 @@ public class UsePerson {
 		
 		System.out.println(hgd);// toString() method가 호출됨
 		System.out.println(superman);// toString() method가 호출됨
+		System.out.println("--------------------------------------------------");
+		
+		System.out.println("추진력 : " + superman.drivingForece() );
+		System.out.println("양력 : " + superman.lift() );
 
 		
 	}// usePerson
