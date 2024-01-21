@@ -24,17 +24,12 @@ import java.util.StringTokenizer;
 public class HomeWork0119 {
 	
 	public String printFileName(String file) {
-		StringBuffer sb = new StringBuffer();
-		sb.append(file);
-		sb.insert(file.indexOf("."), "_bak");
-		String fileName = sb.toString();
-		return fileName;
+		StringBuffer sb = new StringBuffer(file);
+		sb.insert(file.lastIndexOf("."), "_bak");
+		return sb.toString();
 	}//printFileName
 	
-	public TokenDataVO csvData() {
-		TokenDataVO tdVO = null;
-		String csvData = "고한별,김도원,김동섭.김무영~김현종 박시현,손지민,김병년.김일신";
-		csvData = csvData.replaceAll("김", "");
+	public TokenDataVO csvData(String csvData) {
 		StringTokenizer stk = new StringTokenizer(csvData, ",~. ");
 		
 		int tokenCnt = stk.countTokens();
@@ -42,58 +37,66 @@ public class HomeWork0119 {
 		
 		int i = 0;
 		while(stk.hasMoreTokens()) {
-			temp[i] = stk.nextToken();
-			i++;
+			temp[i++] = stk.nextToken();
+//			i++;
 		}//end while
 		
-		tdVO = new TokenDataVO(temp, tokenCnt);
-		return tdVO;
+		//김씨 제거
+		for (int j = 0; j < temp.length; j++) {
+			if(temp[j].startsWith("김")) {
+				temp[j] = temp[j].substring(1);
+			}
+		}
+		
+		return new TokenDataVO(temp, tokenCnt);
 	}//csvData
 	
 	public void useCsvData() {
-		TokenDataVO tdVo = csvData();
-		String[] temp = tdVo.getData();
-		for(String value : temp) {
+		String csvData = "고한별,김도원,김동섭.김무영~김현종 박시현,손지민,김병년.김일신";
+		TokenDataVO tdVo = csvData(csvData);
+		for(String value : tdVo.getData()) {
 			System.out.print(value + " ");
 		}
 		System.out.println("");
 	}//useCsvData
 	
-	public static final int Korea = 0;
-	public static final int US = 1;
-	public static final int Japan = 2;
-	public static final int Canada = 3;
-	public void TimeByCountry(int con) {
-		if(con > -1 && con < 4) {
-			switch (con) {
+	public void TimeByCountry(int countryCode) {
+		final int Korea = 0;
+		final int US = 1;
+		final int Japan = 2;
+		final int Canada = 3;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss EEEE");
+		
+		//Locale 객체 생성
+		Locale locale = null;
+		if(countryCode > -1 && countryCode < 4) {
+			switch (countryCode) {
 			case Korea:
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss EEEE", Locale.KOREA);
-				System.out.println(sdf.format(new Date()));
+				locale = Locale.KOREA;
 				break;
 			case US:
-				SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss EEEE", Locale.US);
-				System.out.println(sdf2.format(new Date()));
+				locale = Locale.US;
 				break;
 			case Japan:
-				SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss EEEE", Locale.JAPAN);
-				System.out.println(sdf3.format(new Date()));
+				locale = Locale.JAPAN;
 				break;
 			case Canada:
-				SimpleDateFormat sdf4 = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss EEEE", Locale.CANADA);
-				System.out.println(sdf4.format(new Date()));
+				locale = Locale.CANADA;
 				break;
 			}//switch
 		}else {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss EEEE", Locale.KOREA);
-			System.out.println(sdf.format(new Date()));
+			locale = Locale.KOREA;
 		}
+		sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss EEEE", locale);
+		System.out.println(sdf.format(new Date()));
 	}//TimeByCountry
 
 	public static void main(String[] args) {
 		HomeWork0119 hw = new HomeWork0119();
-		System.out.println(hw.printFileName("text.txt"));//백업파일명 반환
+		System.out.println(hw.printFileName("te.xt.txt"));//백업파일명 반환
 		hw.useCsvData();//csv데이터 반환
-		hw.TimeByCountry(3);//각 나라 시간 반환
+		hw.TimeByCountry(2);//각 나라 시간 반환
 
 	}
 
