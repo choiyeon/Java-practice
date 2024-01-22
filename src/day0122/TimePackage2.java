@@ -10,9 +10,9 @@ public class TimePackage2 {
 
 	public void useDate() {
 		LocalDate ld = LocalDate.now();
-		System.out.println(ld.getYear() + " " + ld.getMonth() + " " + ld.getMonthValue() + " - " + ld.getDayOfMonth()
-				+ " 오늘 이번 년도의 몇번째 날 : " + ld.getDayOfYear() + " / 요일 : " + ld.getDayOfWeek() + " / 요일의 수 : "
-				+ ld.getDayOfWeek().getValue());
+		System.out.println(ld.getYear() + " " + ld.getMonth() + " " + ld.getMonthValue() + " - " +
+		ld.getDayOfMonth() + " 오늘 이번 년도의 몇번째 날 : " + ld.getDayOfYear() +
+		" / 요일 : " + ld.getDayOfWeek() + " / 요일의 수 : " + ld.getDayOfWeek().getValue());
 
 	}// useDate
 

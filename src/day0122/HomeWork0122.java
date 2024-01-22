@@ -1,6 +1,7 @@
 package day0122;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.util.*;
 
 /**
  * 1. calendar 클래스를 사용하여 1월의 달력을 출력(1일~31일)<br>
@@ -12,29 +13,68 @@ public class HomeWork0122 {
 
 	public void January() {
 		Calendar cal = Calendar.getInstance();
-		StringBuilder sb = new StringBuilder();
-		sb.append(cal.get(Calendar.DAY_OF_MONTH)).append("일\t");
-		int today = cal.get(Calendar.DAY_OF_MONTH);
+		Calendar cal2 = Calendar.getInstance();
 		
-		int[] days = new int[31];
-		for(int i = 0; i < 31; i++) {
-			days[i] = i+1;
-			System.out.println(days[i]);
-			sb.append(days[i]).append("일\t");
-		}
-		System.out.println(sb);
+		//1월 첫날 구하기
+		cal.set(Calendar.MONTH, 0);//1월, 1적게 설정. 
+		cal.set(Calendar.DAY_OF_MONTH, 1);//1일 설정
+		
+		//1월 마지막 날 구하기(2월 첫날에서 -1하기)
+		cal2.set(Calendar.MONTH, 1);//2월, 1적게 설정. 
+		cal2.set(Calendar.DAY_OF_MONTH, 1);//1일
+		cal2.set(Calendar.DAY_OF_MONTH, cal2.get(Calendar.DAY_OF_MONTH)-1);//1월의 마지막 날구하기
+		
+		int[] days = new int[cal2.get(Calendar.DAY_OF_MONTH)];
+		for (int i = 0; i < days.length; i++) {
+			days[i] = cal.get(Calendar.DAY_OF_MONTH);
+			System.out.print(days[i] + " ");
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH)+1);
+			
+			//일주일씩 줄바꿈...?
+			if((i+1) % 7 == 0) {
+				System.out.println();
+			}
+		}//end for
 		
 	}//January
 	
-	public String yearMonth(int year, int month) {
+	public void yearMonth(int year, int month) {
+		Calendar cal = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
 		
-		return null;
+		//입력받은 년,월
+		cal.set(Calendar.YEAR, year);//년 변경
+		cal.set(Calendar.MONTH, month-1);//월 변경 1적게 설정
+		cal.set(Calendar.DAY_OF_MONTH, 1);//1일 설정
+		
+		//입력받은 월 마지막 날 구하기(다음달 첫날에서 -1하기)
+		cal2.set(Calendar.YEAR, year);//년 변경
+		cal2.set(Calendar.MONTH, cal.get(Calendar.MONTH)+1);//다음달 설정.
+		cal2.set(Calendar.DAY_OF_MONTH, 1);//1일
+		cal2.set(Calendar.DAY_OF_MONTH, cal2.get(Calendar.DAY_OF_MONTH)-1);//입력월의 마지막 날구하기
+		
+		System.out.println(cal.get(Calendar.YEAR) + "년 " + (cal.get(Calendar.MONTH)+1) + "월\n");
+		
+		//배열 할당
+		int[] days = new int[cal2.get(Calendar.DAY_OF_MONTH)];
+		for (int i = 0; i < days.length; i++) {
+			days[i] = cal.get(Calendar.DAY_OF_MONTH);
+			
+			LocalDate ld = LocalDate.of(year, month, days[i]);
+			System.out.print(ld.getDayOfMonth() + "일 ");
+			
+			//다음 날짜로 이동
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH)+1);
+		}//end for
+		
+		
 	}//yearMonth
 	
 	public static void main(String[] args) {
 		HomeWork0122 hw0122 = new HomeWork0122();
 		hw0122.January();
-		hw0122.yearMonth(2024, 1);
+		System.out.println("\n----------------------------------");
+		hw0122.yearMonth(2028, 2);
 	}//main
 
 }//class
