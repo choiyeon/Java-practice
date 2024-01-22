@@ -71,6 +71,17 @@ public class UseStringBuilder {
 		usb.useStringBuffer();
 		System.out.println("------------StringBuilder----------");
 		usb.useStringBuilder();
+		System.out.println("------------------------------------");
+		String str = "안녕";
+		//String에 +=을 사용하거나 +연산하게되면 JDK1.5부터는
+		//StringBuilder객체를 생성하여 문자열저장하고 append를 수행한다.
+		str += "하세요?";
+		str += "오늘은";
+		System.out.println(str + "추운 월요일" + "아우 추워");
+		
+		StringBuilder sb = new StringBuilder("안녕");
+		sb.append("하세ㅛㅇ/").append("오늘은");
+		System.out.println(sb.append("추운 원요리입니다.").append("오지게 춰워"));
 		
 		
 	}

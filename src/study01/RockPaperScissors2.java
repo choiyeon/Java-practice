@@ -1,18 +1,22 @@
 package study01;
 
+import java.util.Scanner;
+
 public class RockPaperScissors2 {
 	private int count;
 	public final String ROCK = "바위";
-	public final String Paper = "보";
-	public final String Scissors = "가위";
+	public final String PAPER = "보";
+	public final String SCISSORS = "가위";
 
 	public String randomChoice() {
-		String[] rpsList = { Scissors, ROCK, Paper };
+		String[] rpsList = { SCISSORS, ROCK, PAPER };
 		return rpsList[(int) (Math.random() * 3)];
 	}// randomChoice
 
 	public String player() {
-		String playerChoice = randomChoice();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("\"가위\" \"바위\" \"보\"  중 선택");
+		String playerChoice = scanner.nextLine();
 		return playerChoice;
 	}// player
 
@@ -20,6 +24,12 @@ public class RockPaperScissors2 {
 		String computerChoice = randomChoice();
 		return computerChoice;
 	}// computer
+	
+	public boolean playerCheck() {
+//		while (player().hasNext()) {
+//			}
+		return false;
+	}//playerCheck
 
 	public void play() {
 		String result = "";
@@ -27,12 +37,13 @@ public class RockPaperScissors2 {
 		do {
 			String playerChoice = player();
 			String computerChoice = computer();
+			System.out.println("플레이어 : " + playerChoice + " 컴퓨터 : " + computerChoice);
 
 			if (playerChoice.equals(computerChoice)) {
 				result = "무승부";
-			} else if (playerChoice.equals(Scissors)) {
+			} else if (playerChoice.equals(SCISSORS)) {
 				switch (computerChoice) {
-				case Paper:
+				case PAPER:
 					result = "플레이어 승";
 					break;
 
@@ -42,21 +53,21 @@ public class RockPaperScissors2 {
 				}
 			} else if (playerChoice.equals(ROCK)) {
 				switch (computerChoice) {
-				case Scissors:
+				case SCISSORS:
 					result = "플레이어 승";
 					break;
 
-				case Paper:
+				case PAPER:
 					result = "플레이어 패";
 					break;
 				}
-			} else if (playerChoice.equals(Paper)) {
+			} else if (playerChoice.equals(PAPER)) {
 				switch (computerChoice) {
 				case ROCK:
 					result = "플레이어 승";
 					break;
 
-				case Scissors:
+				case SCISSORS:
 					result = "플레이어 패";
 					break;
 				}

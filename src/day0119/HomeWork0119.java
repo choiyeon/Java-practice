@@ -24,7 +24,7 @@ import java.util.StringTokenizer;
 public class HomeWork0119 {
 	
 	public String printFileName(String file) {
-		StringBuffer sb = new StringBuffer(file);
+		StringBuilder sb = new StringBuilder(file);
 		sb.insert(file.lastIndexOf("."), "_bak");
 		return sb.toString();
 	}//printFileName
