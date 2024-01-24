@@ -21,11 +21,10 @@ import javax.swing.JOptionPane;
 public class HomeWork0123 {
 	String informData;
 	static Boolean LOOP = true;
-	List<String> nameList = new ArrayList<String>();
-	List<Integer> javaScoreList = new ArrayList<Integer>();
-	List<Integer> oracleScoreList = new ArrayList<Integer>();
+	List<WorkVO> workList;
 
 	public HomeWork0123() {
+		this.workList = new ArrayList<>();
 	}// HomeWork0123
 
 	public void inputMenu() {
@@ -46,6 +45,7 @@ public class HomeWork0123 {
 		int oracleScore = Integer.parseInt(stk.nextToken().trim());
 
 		wkVO = new WorkVO(name, javaScore, oracleScore);
+		
 
 		return wkVO;
 	}// workData
@@ -56,20 +56,17 @@ public class HomeWork0123 {
 	 */
 	public void inputData() {
 		WorkVO wkVO = workData();
-		nameList.add(wkVO.getName());
-		javaScoreList.add(wkVO.getJavaScore());
-		oracleScoreList.add(wkVO.getOracleScore());
+		workList.add(wkVO);
 	}// inputData
 
 	/**
 	 * 데이터 출력
 	 */
-	public void printData() {
+	public void printDataList() {
 		System.out.println("번호\t이름\t자바\t오라클\t총점");
 		System.out.println("========================================");
-		for (int i = 0; i < nameList.size(); i++) {
-			System.out.println((i + 1) + "\t" + nameList.get(i) + "\t" + javaScoreList.get(i) + "\t"
-					+ oracleScoreList.get(i) + "\t" + (javaScoreList.get(i) + oracleScoreList.get(i)));
+		for (WorkVO wkVO : workList) {
+			wkVO.printData();
 		} // end for
 	}// printData
 
@@ -86,8 +83,8 @@ public class HomeWork0123 {
 		while (LOOP) {
 			hw.inputMenu();
 			if (("출력").equals(hw.informData)) {
-				hw.printData();
-			} else if (("Y").equals(hw.informData) || ("y").equals(hw.informData)) {
+				hw.printDataList();
+			} else if ("Y".equalsIgnoreCase(hw.informData)) {
 				hw.exitProgram();
 			} else if (hw.informData != null) {
 				hw.inputData();// 값 넣기 호출

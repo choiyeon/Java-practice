@@ -45,7 +45,8 @@ public class UseSet {
 			System.out.println(temp);
 		}//while
 		System.out.println("---------------------");
-		while(ita.hasNext()) {
+//		System.out.println("아무것도 안나옴");
+		while(ita.hasNext()) {//위에서 다 빼서 ita.hasNext()가 false임. while 실행안됨
 			temp = ita.next();//한번만 사용하도록 주의
 			System.out.println(temp);
 		}//while
