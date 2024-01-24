@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import day0123.WorkVO;
+
 /**
  * 1. 입력, 검색, 종료 메뉴를 받을 수 있는 Dialog를 제공한다.<br>
  * 
@@ -53,7 +55,6 @@ public class HomeWork0124 extends JFrame {
 			switch (selectMenu) {
 			case INPUT:
 				inputData = JOptionPane.showInputDialog("학생의 정보를 아래와 같이 입력해주세요.\n예)학생번호,이름,자바점수,오라클점수");
-//				JOptionPane.showMessageDialog(null, "이미 존재하는 번호입니다.");
 				if (inputData != null) {
 					inputArr = inputData.split(",");
 
@@ -61,8 +62,10 @@ public class HomeWork0124 extends JFrame {
 						inputData(inputArr);
 					} // if
 				} // if
+				break;
 			case SEARCH:
 				printData();
+				break;
 			case END:
 				exitFlag = true;
 			}// switch
@@ -76,6 +79,10 @@ public class HomeWork0124 extends JFrame {
 	 */
 	public void inputData(String[] inputArr) {
 		int studentNum = Integer.parseInt(inputArr[0]);
+		if (studentNumDuplicate(studentNum)) {
+			JOptionPane.showMessageDialog(null, "이미 존재하는 번호입니다.");
+		} // if
+
 		String name = inputArr[1];
 		int java = Integer.parseInt(inputArr[2]);
 		int oracle = Integer.parseInt(inputArr[3]);
@@ -87,30 +94,34 @@ public class HomeWork0124 extends JFrame {
 	}// inputData
 
 	/**
-	 * 출력 메서드 Set<키Generic> set = map.keySet();
+	 * 학생번호로 중복 체크
 	 * 
-	 * Iterator<키Generic> ita = set.iterator();
-	 * 
-	 * while(ita.hasNext()){ value = map.get(ita.next()); }
+	 * @param studentNum
+	 * @return
+	 */
+	public boolean studentNumDuplicate(int studentNum) {
+		for (StudentVO sVO : map.values()) {
+			if (sVO.getStudentNum() == studentNum) {
+				return true;
+			}
+		} // for
+		return false;
+	}// studentNumDuplicate
+
+	/**
+	 * 출력 메서드
 	 */
 	public void printData() {
 		Set<Integer> set = map.keySet();
 		Iterator<Integer> ita = set.iterator();
 		StudentVO value;
-		System.out.println("번호\t학생번호\t이름\t자바점수\t오라클점수\t총점\t평균\n"); 
+
+		System.out.println("번호\t학생번호\t이름\t자바점수\t오라클점수\t총점\t평균\n");
+		System.out.println("============================================================");
 		while (ita.hasNext()) {
 			value = map.get(ita.next());
 			System.out.println(value);
 		}
-
-//		StudentVO sVO = null;
-//		for (int i = 0; i < list.size(); i++) {
-//			wVO = list.get(i);
-//		} // for
-//		for (int i = 0; i < list.size(); i++) {
-//			System.out.print((i + 1) + "\t" + wVO.getName() + "\t" + wVO.getJava() + "\t" + wVO.getOracle() + "\t"
-//					+ (wVO.getOracle() + wVO.getJava()) + "\n");
-//		} // for
 	}// printData
 
 	public static void main(String[] args) {

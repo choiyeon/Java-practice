@@ -7,7 +7,7 @@ public class StudentVO {
 	private int oracleScore;
 	private static int startNumber = 1;// static 영역에 저장해서 증가식 관리
 	private int number;
-	private float averageScore;
+	private double averageScore;
 
 	public StudentVO() {
 
@@ -19,7 +19,7 @@ public class StudentVO {
 		this.javaScore = javaScore;
 		this.oracleScore = oracleScore;
 		this.number = startNumber++;
-		this.averageScore = (javaScore + oracleScore) / 2;
+		this.averageScore = (javaScore + oracleScore) / 2.0;
 	}
 
 	public void printData() {
@@ -63,7 +63,7 @@ public class StudentVO {
 	@Override
 	public String toString() {
 		return number + "\t" + studentNum + "\t" + name + "\t" + javaScore + "\t" + oracleScore + "\t"
-				+ (javaScore + oracleScore) + "\t" + averageScore;
+				+ (javaScore + oracleScore) + "\t" + String.format("%.2f", averageScore);
 	}
 
 }
