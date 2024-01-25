@@ -5,10 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-import day0123.WorkVO;
 
 /**
  * 1. 입력, 검색, 종료 메뉴를 받을 수 있는 Dialog를 제공한다.<br>
@@ -23,16 +20,8 @@ import day0123.WorkVO;
  * 1 xxx 90 90 90 90.xx<br>
  * 
  * 4. 1메뉴에서 “3” 이 입력되면 프로그램을 종료한다.
- * 
- * 1 입력, 학생정보 받기. 학생번호 이미 있으면 메시지 다이얼로그. 없으면 정보 저장.
- * 
- * 2 입력 모든 값 출력 map 키 값(정보), set넣고 iterator로 값찾아서 while출력 번호 이름 자바 오라클 합계 평균
- * 
- * 3 입력 프로그램 종료
- * 
  */
-@SuppressWarnings("serial")
-public class HomeWork0124 extends JFrame {
+public class HomeWork0124 {
 	private final String INPUT = "1";
 	private final String SEARCH = "2";
 	private final String END = "3";
@@ -45,7 +34,7 @@ public class HomeWork0124 extends JFrame {
 	}// HomeWork0124
 
 	public void inputMenu() {
-		boolean exitFlag = false;
+		boolean exitFlag = false;//boolean 기본값 false
 		String inputData = "";
 		String selectMenu = "";
 		String[] inputArr = null;// csv 데이터 저장할 배열

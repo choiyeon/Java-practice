@@ -17,7 +17,7 @@ public class HomeWork2 {
      */
     public void question1() {
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.MONTH, 2);//원하는 달보다 1하나 적게 설정
+        cal.set(Calendar.MONTH, 4);//원하는 달보다 1하나 적게 설정
         System.out.println("=======================1월=======================");
         System.out.println("일\t월\t화\t수\t목\t금\t토");
         

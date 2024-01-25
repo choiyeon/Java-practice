@@ -19,7 +19,7 @@ public class StudentVO {
 		this.javaScore = javaScore;
 		this.oracleScore = oracleScore;
 		this.number = startNumber++;
-		this.averageScore = (javaScore + oracleScore) / 2.0;
+		this.averageScore = (javaScore + oracleScore) / 2.0;// 실수로 연산해야 결과도 실수.
 	}
 
 	public void printData() {
@@ -58,7 +58,6 @@ public class StudentVO {
 	public void setOracleScore(int oracleScore) {
 		this.oracleScore = oracleScore;
 	}
-	
 
 	@Override
 	public String toString() {
