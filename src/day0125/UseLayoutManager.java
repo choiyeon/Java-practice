@@ -41,10 +41,14 @@ public class UseLayoutManager extends JFrame {
 		jtfName.setForeground(color);
 		jcbGender.setForeground(color);
 		jbtnInput.setForeground(color);
+		//바닥이 투명해서 변경안됨
 		
 		//바닥이 투명한 컴포넌트는 투명도를 설정해야함.
 		jlblName.setOpaque(true);
 		jlblName.setBackground(new Color(0x3F7F5F));
+		
+		jbtnInput.setOpaque(true);
+		jbtnInput.setBackground(new Color(0x3F7F5F));
 		
 		JTextArea jtaList = new JTextArea();
 		jtaList.setFont(new Font("맑은 고딕", Font.BOLD | Font.ITALIC, 20));

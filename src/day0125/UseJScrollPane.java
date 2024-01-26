@@ -14,11 +14,14 @@ public class UseJScrollPane extends JFrame {
 		super("스크롤 바 연습");
 		
 		JTextArea jta = new JTextArea("aslidhfaoiwhs");
+		JTextArea jta2 = new JTextArea();
+		//줄단위의 보호
+		jta2.setLineWrap(true);
 		String[] dataArr = "자바,오라클,JDBC,HTML,JSP/JSON/AJAX".split("[,/]");
 		JList<String> jl = new JList<String>(dataArr);
 		
 		//BorderLayout -> GridLayout으로 배치관리자 변경
-		setLayout(new GridLayout(1,2));
+		setLayout(new GridLayout(1,3));
 		
 		//스크롤바가 필요한 컴포넌트를 위해 JScrollPane 생성
 		JScrollPane jsp = new JScrollPane(jta);
@@ -26,8 +29,9 @@ public class UseJScrollPane extends JFrame {
 		
 		add(jsp);
 		add(jsp2);
+		add(jta2);
 		
-		setBounds(100,100,300,100);
+		setBounds(100,100,400,200);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

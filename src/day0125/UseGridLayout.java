@@ -3,6 +3,7 @@ package day0125;
 import java.awt.GridLayout;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
@@ -16,10 +17,11 @@ public class UseGridLayout extends JFrame {
 		JRadioButton jrbProtected = new JRadioButton("protected");
 		JRadioButton jrbPackage = new JRadioButton("package");
 		JRadioButton jrbPrivate = new JRadioButton("private");
-		JRadioButton jrbNone = new JRadioButton("none");
-		JRadioButton jrbSealed = new JRadioButton("sealed");
-		JRadioButton jrbNonSealed = new JRadioButton("non-sealed");
-		JRadioButton jrbFinal = new JRadioButton("final");
+		
+		JCheckBox jrbNone = new JCheckBox("none");
+		JCheckBox jrbSealed = new JCheckBox("sealed");
+		JCheckBox jrbNonSealed = new JCheckBox("non-sealed");
+		JCheckBox jrbFinal = new JCheckBox("final");
 		
 		//버튼 그룹으로 라디오 버튼을 묶어야 여러개 중 하나만 선택 가능.
 		ButtonGroup bg = new ButtonGroup();
@@ -28,11 +30,12 @@ public class UseGridLayout extends JFrame {
 		bg.add(jrbPackage);
 		bg.add(jrbPrivate);
 		
-		ButtonGroup bg2 = new ButtonGroup();
-		bg2.add(jrbNone);
-		bg2.add(jrbSealed);
-		bg2.add(jrbNonSealed);
-		bg2.add(jrbFinal);
+		//체크박스는 여러개가 선택되어야하기 때문에 그룹으로 묶지 않는다.
+//		ButtonGroup bg2 = new ButtonGroup();
+//		bg2.add(jrbNone);
+//		bg2.add(jrbSealed);
+//		bg2.add(jrbNonSealed);
+//		bg2.add(jrbFinal);
 		
 		//3. 배치관리자 생성 & 설정
 		setLayout(new GridLayout(2, 4));
