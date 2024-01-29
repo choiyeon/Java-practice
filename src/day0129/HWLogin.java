@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
-public class HWLogin extends JFrame implements ActionListener{
+public class HWLogin extends JFrame implements ActionListener {
 
 	private JTextField jtf;
 	private JPasswordField jpf;
@@ -25,7 +25,6 @@ public class HWLogin extends JFrame implements ActionListener{
 		setLayout(null);
 		login();
 		passWord();
-		result();
 
 		setSize(400, 400);
 		setVisible(true);
@@ -49,28 +48,20 @@ public class HWLogin extends JFrame implements ActionListener{
 		jtf.setBounds(20, 20, 350, 70);
 		add(jtf);
 	}// login
-	
+
 	/**
-	 *비밀번호로 커서 이동
+	 * 엔터 후 커서 이동
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		jtf.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent ke) {//키 누르고 있을 때
-				//눌린 키의 키코드와 키 값을 얻어온다.
-				char c = ke.getKeyChar();
-				int code = ke.getKeyCode();
-				
-				//엔터키가 눌렸을 때 JTA에 "엔터눌림"을 추가
-				if(code == 10) {
-					jpf.requestFocus();
-				}//if
-			}//keyPressed
-		});//addKeyListener
-		
-	}//actionPerformed
+		if (e.getSource() == jtf) {//이벤트가 일어나면 커서 이동
+			jpf.requestFocus();
+		} else if (e.getSource() == jpf) {
+			result();
+//			revalidate();
+//			repaint();
+		}// if
+	}// actionPerformed
 
 	/**
 	 * 비밀번호
@@ -86,16 +77,27 @@ public class HWLogin extends JFrame implements ActionListener{
 	/**
 	 * 결과
 	 */
-	public void result() {
-		jl = new JLabel("뭐가 나와야지");
+	public void result() {		
+		jl = new JLabel();
 		jl.setBorder(new TitledBorder("결과"));
 		jl.setBounds(20, 180, 350, 70);
+
+		String login = jtf.getText();
+		char[] passWordChar = jpf.getPassword();
+		String passWord = new String(passWordChar);
+		if (login != null && passWord != null) {
+			if (login.equals("root") && passWord.equals("1234") || login.equals("admin") && passWord.equals("password")
+					|| login.equals("temp") && passWord.equals("q1w2e3r4")) {
+				jl.setText("아이디님 로그인");
+			} else {
+				jl.setText("로그인 실패");
+			}
+		}
 		add(jl);
 	}// result
 
 	public static void main(String[] args) {
 		new HWLogin();
 	}// main
-
 
 }// class
