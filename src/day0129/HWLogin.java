@@ -1,5 +1,6 @@
 package day0129;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -58,8 +59,8 @@ public class HWLogin extends JFrame implements ActionListener {
 			jpf.requestFocus();
 		} else if (e.getSource() == jpf) {
 			result();
-//			revalidate();
-//			repaint();
+			revalidate();
+			repaint();
 		}// if
 	}// actionPerformed
 
@@ -88,8 +89,10 @@ public class HWLogin extends JFrame implements ActionListener {
 		if (login != null && passWord != null) {
 			if (login.equals("root") && passWord.equals("1234") || login.equals("admin") && passWord.equals("password")
 					|| login.equals("temp") && passWord.equals("q1w2e3r4")) {
-				jl.setText("아이디님 로그인");
+				jl.setForeground(Color.BLUE);
+				jl.setText(login + "님 로그인");
 			} else {
+				jl.setForeground(Color.RED);
 				jl.setText("로그인 실패");
 			}
 		}

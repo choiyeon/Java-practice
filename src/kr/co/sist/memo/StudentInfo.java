@@ -94,16 +94,16 @@ public class StudentInfo extends JFrame {
 
 		// 버튼 크기 & 위치 설정
 		jbtnAdd.setSize(60, 30);
-		jbtnAdd.setLocation(60, 240);
+		jbtnAdd.setLocation(45, 240);
 
 		jbtnChange.setSize(60, 30);
-		jbtnChange.setLocation(130, 240);
+		jbtnChange.setLocation(115, 240);
 
 		jbtnDelete.setSize(60, 30);
-		jbtnDelete.setLocation(200, 240);
+		jbtnDelete.setLocation(185, 240);
 
 		jbtnEnd.setSize(60, 30);
-		jbtnEnd.setLocation(270, 240);
+		jbtnEnd.setLocation(255, 240);
 ///////////////////////////////////////////////////////////////////////////////		
 		// 라디오 그룹
 		ButtonGroup bg = new ButtonGroup();
