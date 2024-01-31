@@ -70,12 +70,11 @@ public class JavaMemoEvent extends WindowAdapter implements ActionListener, Wind
 	}// saveMemo
 
 	private void helpDialog() {
-		System.out.println("도움말");
-
+		new MemoHelpDesign(jmd);
 	}
 
 	private void fontDialog() {
-		System.out.println("폰트");
+		new MemoFontDesign(jmd);
 
 	}
 

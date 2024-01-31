@@ -11,24 +11,24 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class MemoHelpEvent extends WindowAdapter implements ActionListener {
+	
 	private MemoHelpDesign mhd;
 	
 	public MemoHelpEvent(MemoHelpDesign mhd) {
-		JTextArea jta = new JTextArea();
-		
-		JButton jbtn = new JButton("닫기");
-		JPanel jp = new JPanel();
-		jp.add(jbtn);
-		
-		add("Center", jta);
-		add("South", jp);
+		this.mhd = mhd;
+		String info = "Java 메모장 정보입니다.";
+		mhd.getJtaMemoInfo().append(info);
 	}
+	
 	@Override
-	public void actionPerformed(ActionEvent e) {
-
+	public void actionPerformed(ActionEvent ae) {
+		if(ae.getSource() == mhd.getJbtnClose()) {
+			mhd.dispose();
+		}
 	}
 	@Override
 	public void windowClosing(WindowEvent e) {
+		mhd.dispose();
 	}
 
 }

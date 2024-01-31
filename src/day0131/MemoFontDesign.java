@@ -1,48 +1,190 @@
 package day0131;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
-/**
- *부가적인 기능을 제공하기 위해 제작하는 창 : Dialog 
- */
-//@SuppressWarnings("serial")
-//public class HWMemoSubJDialog extends JDialog implements ActionListener {
-//
-//	public HWMemoSubJDialog(HWMemoDesign hmd) {//Frame의 자식창
-////		super(hmd, "부가적인 기능", true); //modal 첫창 클릭 안됨.
-//		super(hmd, "부가적인 기능", false); //non-modal 첫창 클릭 가능. 여러 서브창 띄울 수 있음
+@SuppressWarnings("serial")
+public class MemoFontDesign extends JDialog {
+
+	private JTextField jtfFont, jtfStyle, jtfSize;
+	private JList<String> jlFont, jlStyle, jlSize;
+	private DefaultListModel<String> dlmFont, dlmStyle, dlmSize;
+	private JLabel jlPreview;
+	private JButton jbtnCheck, jbtnCancel;
+
+	public MemoFontDesign(JavaMemoDesign jmd) {
+		super(jmd, "글꼴", false);
+		
+		//
+		JLabel jlbFont = new JLabel("글꼴(F):");
+		JLabel jlbStyle = new JLabel("글꼴 스타일(Y):");
+		JLabel jlbSize = new JLabel("크기(S):");
+		JLabel jlbPreview = new JLabel("보기");
+		
+		//JTextField
+		jtfFont = new JTextField(10);
+		jtfStyle = new JTextField(10);
+		jtfSize = new JTextField(10);
+
+		//DefaultListModel
+		dlmFont = new DefaultListModel<String>();
+		dlmStyle = new DefaultListModel<String>();
+		dlmSize = new DefaultListModel<String>();
+		
+		//JList
+		jlFont = new JList<String>(dlmFont);
+		jlStyle = new JList<String>(dlmStyle);
+		jlSize = new JList<String>(dlmSize);
+		
+		JScrollPane jspFont = new JScrollPane(jlFont);
+		JScrollPane jspStyle = new JScrollPane(jlStyle);
+		JScrollPane jspSize = new JScrollPane(jlSize);
+
+		//JLabel
+		jlPreview = new JLabel("미리보기");
+
+		//JButton
+		jbtnCheck = new JButton("확인");
+		jbtnCancel = new JButton("취소");
+		
+		//JPanel 설정 어떻게 배치해야하는지 모르겠다
+//		JPanel jpFont = new JPanel();
+//		jpFont.setBorder(new TitledBorder("글꼴(F):"));
+//		jpFont.add(jtfFont);
+//		jpFont.add(jlFont);
 //		
-//		ImageIcon ii = new ImageIcon("E:/dev/workspace/java_se/src/day0125/images/img3.png");
-//		JLabel jlblBack = new JLabel("자식창에서 제공하는 이미지",ii, JLabel.CENTER);
 //		
-//		JButton jbtn = new JButton("닫기");
-//		JPanel jp = new JPanel();
-//		jp.add(jbtn);
+//		JPanel jpStyle = new JPanel();
+//		jpStyle.setBorder(new TitledBorder("글꼴 스타일(Y):"));
+//		jpStyle.add(jtfStyle);
+//		jpStyle.add(jlStyle);
 //		
-//		add("Center", jlblBack);
-//		add("South", jp);
 //		
-//		//JDialog는 이벤트 등록 코드를 setVisible전에 정의해야한다.
-//		jbtn.addActionListener(this);//jbtn이 actionPerformed으로 들어옴.
-//		//JDialog의 종료 : DISPOSE_ON_CLOSE 사용
-//		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//		JPanel jpSize = new JPanel();
+//		jpSize.setBorder(new TitledBorder("크기(S):"));
+//		jpSize.add(jtfSize);
+//		jpSize.add(jlSize);
 //		
-//		setBounds(hmd.getX()+125, hmd.getY()+100, 244, 200);//부모의 시작 좌표를 받아 자식 창 위치 설정
-//		setVisible(true);//사용자에게 보여지는 일
-//	}//SubJDialog
-//	
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		dispose(); // 닫기 버튼으로 서브창 닫기
-////		System.exit(JFrame.ABORT);//자식이 닫히면 부모도 닫힘. 권장하지않음.
-//	}//actionPerformed
-//
-//}//class
+//		JPanel jpPreview = new JPanel();
+//		jpPreview.setBorder(new LineBorder(Color.GRAY));
+//		jpPreview.setBorder(new TitledBorder("보기"));
+//		jpPreview.add(jlPreview);
+//		
+//		JPanel jpBtn = new JPanel();
+//		jpBtn.add(jbtnCheck);
+//		jpBtn.add(jbtnCancel);
+		
+		//컴포넌트 배치
+		setLayout(null);
+		
+		jlbFont.setBounds(30, 0, 130, 30);
+		jtfFont.setBounds(30, 30, 130, 30);
+		jspFont.setBounds(30, 60, 130, 100);
+		
+		jlbStyle.setBounds(170, 0, 130, 30);
+		jtfStyle.setBounds(170, 30, 130, 30);
+		jspStyle.setBounds(170, 60, 130, 100);
+		
+		jlbSize.setBounds(310, 0, 130, 30);
+		jtfSize.setBounds(310, 30, 130, 30);
+		jspSize.setBounds(310, 60, 130, 100);
+		
+		jlbPreview.setBounds(200, 180, 150, 30);
+		jlPreview.setBounds(200, 210, 150, 100);
+		
+		jbtnCheck.setBounds(300, 300, 60, 30);
+		jbtnCancel.setBounds(380, 300, 60, 30);
+		
+		//추가
+		add(jlbFont);
+		add(jtfFont);
+		add(jspFont);
+		
+		add(jlbStyle);
+		add(jtfStyle);
+		add(jspStyle);
+		
+		add(jlbSize);
+		add(jtfSize);
+		add(jspSize);
+		
+		add(jlbPreview);
+		add(jlPreview);
+		
+		add(jbtnCheck);
+		add(jbtnCancel);
+		
+		//has a관계
+		MemoFontEvent mfe = new MemoFontEvent(this);
+		jbtnCheck.addActionListener(mfe);
+		jbtnCancel.addActionListener(mfe);
+
+		setBounds(jmd.getX() + 125, jmd.getY() + 100, 500, 400);
+		setVisible(true);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	}// MemoHelpDesign
+
+	public JTextField getJtfFont() {
+		return jtfFont;
+	}
+
+	public JTextField getJtfStyle() {
+		return jtfStyle;
+	}
+
+	public JTextField getJtfSize() {
+		return jtfSize;
+	}
+
+	public JList<String> getJlFont() {
+		return jlFont;
+	}
+
+	public JList<String> getJlStyle() {
+		return jlStyle;
+	}
+
+	public JList<String> getJlSize() {
+		return jlSize;
+	}
+
+	public DefaultListModel<String> getDlmFont() {
+		return dlmFont;
+	}
+
+	public DefaultListModel<String> getDlmStyle() {
+		return dlmStyle;
+	}
+
+	public DefaultListModel<String> getDlmSize() {
+		return dlmSize;
+	}
+
+	public JLabel getJlPreview() {
+		return jlPreview;
+	}
+
+	public JButton getJbtnCheck() {
+		return jbtnCheck;
+	}
+
+	public JButton getJbtnCancel() {
+		return jbtnCancel;
+	}
+
+}// class
