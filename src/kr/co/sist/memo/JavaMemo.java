@@ -48,7 +48,7 @@ public class JavaMemo extends JFrame {
 		JScrollPane jsp = new JScrollPane(jta);
 		add(jsp);
 
-		setSize(800, 400);
+		setSize(500, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -59,3 +59,4 @@ public class JavaMemo extends JFrame {
 	}// main
 
 }// class
+

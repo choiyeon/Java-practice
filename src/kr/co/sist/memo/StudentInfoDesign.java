@@ -15,16 +15,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class JavaMemo2Design extends JFrame {
+public class StudentInfoDesign extends JFrame {
 	private JTextField jtfName, jtfPhoneNumber;
 	private JRadioButton jrbMen, jrbWomen;
 	private DefaultComboBoxModel<String> dcbmAge;
 	private DefaultListModel<String> dlm;
 
-	public JavaMemo2Design() {
+	public StudentInfoDesign() {
 		super("숙제");
 		setLayout(null);
-		JavaMemo2Event jme = new JavaMemo2Event(this);
+		StudentInfoEvent jme = new StudentInfoEvent(this);
 		addInfo();
 		addText();
 		addComboBox();
@@ -91,12 +91,6 @@ public class JavaMemo2Design extends JFrame {
 		dlm = new DefaultListModel<String>();
 		// View생성 => 리스트 Model과 has a 관계
 		JList<String> jl = new JList<String>(dlm);
-		// 리스트에 값넣기
-		dlm.addElement("진수현,남자,010-1234-5678");
-		dlm.addElement("김동섭,남자,010-1234-5678");
-		dlm.addElement("김병년,남자,010-1234-5678");
-		dlm.addElement("이예찬,남자,010-1234-5678");
-		
 		JScrollPane jsp = new JScrollPane(jl);
 
 		jsp.setBounds(250, 30, 170, 120);
@@ -104,7 +98,7 @@ public class JavaMemo2Design extends JFrame {
 	}//addList
 
 	private JButton[] jbtArr;
-	public void addButton(JavaMemo2Event jme) {
+	public void addButton(StudentInfoEvent jme) {
 		String[] btn = { "추가", "변경", "삭제", "종료" };
 		 jbtArr = new JButton[4];
 

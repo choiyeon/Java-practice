@@ -3,14 +3,14 @@ package kr.co.sist.memo;
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
-public class RunJavaMemo2 extends JFrame {
+public class RunStudentInfo extends JFrame {
 
-	public RunJavaMemo2() {
-		new JavaMemo2Design();
+	public RunStudentInfo() {
+		new StudentInfoDesign();
 	}//RunJavaMemo
 	
 	public static void main(String[] args) {
-		new RunJavaMemo2();
+		new RunStudentInfo();
 	}//main
 
 }//class
