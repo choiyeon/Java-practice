@@ -1,21 +1,13 @@
 package day0131;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
@@ -24,120 +16,121 @@ public class MemoFontDesign extends JDialog {
 	private JTextField jtfFont, jtfStyle, jtfSize;
 	private JList<String> jlFont, jlStyle, jlSize;
 	private DefaultListModel<String> dlmFont, dlmStyle, dlmSize;
-	private JLabel jlPreview;
+	private JLabel jlbPreview;
 	private JButton jbtnCheck, jbtnCancel;
+	private JavaMemoDesign jmd;
 
 	public MemoFontDesign(JavaMemoDesign jmd) {
 		super(jmd, "글꼴", false);
-		
-		//
+		this.jmd = jmd;
+
 		JLabel jlbFont = new JLabel("글꼴(F):");
 		JLabel jlbStyle = new JLabel("글꼴 스타일(Y):");
 		JLabel jlbSize = new JLabel("크기(S):");
-		JLabel jlbPreview = new JLabel("보기");
-		
-		//JTextField
-		jtfFont = new JTextField(10);
-		jtfStyle = new JTextField(10);
-		jtfSize = new JTextField(10);
 
-		//DefaultListModel
-		dlmFont = new DefaultListModel<String>();
-		dlmStyle = new DefaultListModel<String>();
-		dlmSize = new DefaultListModel<String>();
-		
-		//JList
-		jlFont = new JList<String>(dlmFont);
-		jlStyle = new JList<String>(dlmStyle);
-		jlSize = new JList<String>(dlmSize);
-		
+		// JTextField
+		jtfFont = new JTextField("고딕체");
+		jtfStyle = new JTextField("일반");
+		jtfSize = new JTextField("12");
+
+		// DefaultListModel
+		dlmFont = new DefaultListModel<>();
+		dlmStyle = new DefaultListModel<>();
+		dlmSize = new DefaultListModel<>();
+
+		// JLabel
+		jlbPreview = new JLabel("AaBbXxYy");
+		jlbPreview.setBorder(new TitledBorder("보기"));
+
+		// DefaultListModel에 데이터 넣기
+		dlmFont.addElement("고딕체");
+		dlmFont.addElement("궁서체");
+		dlmFont.addElement("Consolas");
+		dlmFont.addElement("새굴림");
+		dlmFont.addElement("맑은 고딕");
+
+		dlmStyle.addElement("일반");
+		dlmStyle.addElement("굵게");
+		dlmStyle.addElement("기울임꼴");
+		dlmStyle.addElement("굵은 기울임꼴");
+
+		dlmSize.addElement("8");
+		dlmSize.addElement("9");
+		dlmSize.addElement("10");
+		for (int i = 12; i < 81; i += 2) {
+			dlmSize.addElement(Integer.toString(i));// 문자열 결합
+		}
+
+		// JList
+		jlFont = new JList<>(dlmFont);
+		jlStyle = new JList<>(dlmStyle);
+		jlSize = new JList<>(dlmSize);
+
+		jlFont.setSelectedIndex(0);
+		jlStyle.setSelectedIndex(0);
+		jlSize.setSelectedIndex(0);
+
 		JScrollPane jspFont = new JScrollPane(jlFont);
 		JScrollPane jspStyle = new JScrollPane(jlStyle);
 		JScrollPane jspSize = new JScrollPane(jlSize);
 
-		//JLabel
-		jlPreview = new JLabel("미리보기");
-
-		//JButton
+		// JButton
 		jbtnCheck = new JButton("확인");
 		jbtnCancel = new JButton("취소");
-		
-		//JPanel 설정 어떻게 배치해야하는지 모르겠다
-//		JPanel jpFont = new JPanel();
-//		jpFont.setBorder(new TitledBorder("글꼴(F):"));
-//		jpFont.add(jtfFont);
-//		jpFont.add(jlFont);
-//		
-//		
-//		JPanel jpStyle = new JPanel();
-//		jpStyle.setBorder(new TitledBorder("글꼴 스타일(Y):"));
-//		jpStyle.add(jtfStyle);
-//		jpStyle.add(jlStyle);
-//		
-//		
-//		JPanel jpSize = new JPanel();
-//		jpSize.setBorder(new TitledBorder("크기(S):"));
-//		jpSize.add(jtfSize);
-//		jpSize.add(jlSize);
-//		
-//		JPanel jpPreview = new JPanel();
-//		jpPreview.setBorder(new LineBorder(Color.GRAY));
-//		jpPreview.setBorder(new TitledBorder("보기"));
-//		jpPreview.add(jlPreview);
-//		
-//		JPanel jpBtn = new JPanel();
-//		jpBtn.add(jbtnCheck);
-//		jpBtn.add(jbtnCancel);
-		
-		//컴포넌트 배치
+
+		// 컴포넌트 배치
 		setLayout(null);
-		
-		jlbFont.setBounds(30, 0, 130, 30);
-		jtfFont.setBounds(30, 30, 130, 30);
-		jspFont.setBounds(30, 60, 130, 100);
-		
-		jlbStyle.setBounds(170, 0, 130, 30);
-		jtfStyle.setBounds(170, 30, 130, 30);
-		jspStyle.setBounds(170, 60, 130, 100);
-		
-		jlbSize.setBounds(310, 0, 130, 30);
-		jtfSize.setBounds(310, 30, 130, 30);
-		jspSize.setBounds(310, 60, 130, 100);
-		
-		jlbPreview.setBounds(200, 180, 150, 30);
-		jlPreview.setBounds(200, 210, 150, 100);
-		
+
+		setComponents(jlbFont, jtfFont, jspFont, 30, 0);
+		setComponents(jlbStyle, jtfStyle, jspStyle, 170, 0);
+		setComponents(jlbSize, jtfSize, jspSize, 310, 0);
+
+		jlbPreview.setBounds(200, 190, 230, 80);
+
 		jbtnCheck.setBounds(300, 300, 60, 30);
 		jbtnCancel.setBounds(380, 300, 60, 30);
-		
-		//추가
-		add(jlbFont);
-		add(jtfFont);
-		add(jspFont);
-		
-		add(jlbStyle);
-		add(jtfStyle);
-		add(jspStyle);
-		
-		add(jlbSize);
-		add(jtfSize);
-		add(jspSize);
-		
-		add(jlbPreview);
-		add(jlPreview);
-		
-		add(jbtnCheck);
-		add(jbtnCancel);
-		
-		//has a관계
+
+		addComponents(jlbPreview, jbtnCheck, jbtnCancel);
+
+		// has a관계
 		MemoFontEvent mfe = new MemoFontEvent(this);
+
+		addWindowListener(mfe);
 		jbtnCheck.addActionListener(mfe);
 		jbtnCancel.addActionListener(mfe);
 
+		jtfFont.addMouseListener(mfe);
+		jtfStyle.addMouseListener(mfe);
+		jtfSize.addMouseListener(mfe);
+
+		jlFont.addMouseListener(mfe);
+		jlStyle.addMouseListener(mfe);
+		jlSize.addMouseListener(mfe);
+
+		// 윈도운 배치 & 띄우기
 		setBounds(jmd.getX() + 125, jmd.getY() + 100, 500, 400);
 		setVisible(true);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
 	}// MemoHelpDesign
+
+	// 컴포넌트 배치 메서드
+	private void setComponents(JLabel lb, JTextField jtf, JScrollPane jsp, int x, int y) {
+		lb.setBounds(x, y, 130, 30);
+		jtf.setBounds(x, 30, 130, 30);
+		jsp.setBounds(x, 60, 130, 100);
+		addComponents(lb, jtf, jsp);
+	}
+
+	// 컴포넌트 추가 메서드 - ellipsis(...) : 메서드에 전달하는 인자 개수가 가변적일 때 사용.
+	private void addComponents(JComponent... components) {
+		for (JComponent component : components) {
+			add(component);
+		}
+	}
+
+	public JavaMemoDesign getJmd() {
+		return jmd;
+	}
 
 	public JTextField getJtfFont() {
 		return jtfFont;
@@ -151,15 +144,15 @@ public class MemoFontDesign extends JDialog {
 		return jtfSize;
 	}
 
-	public JList<String> getJlFont() {
+	public JList getJlFont() {
 		return jlFont;
 	}
 
-	public JList<String> getJlStyle() {
+	public JList getJlStyle() {
 		return jlStyle;
 	}
 
-	public JList<String> getJlSize() {
+	public JList getJlSize() {
 		return jlSize;
 	}
 
@@ -176,7 +169,7 @@ public class MemoFontDesign extends JDialog {
 	}
 
 	public JLabel getJlPreview() {
-		return jlPreview;
+		return jlbPreview;
 	}
 
 	public JButton getJbtnCheck() {
