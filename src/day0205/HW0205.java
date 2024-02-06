@@ -14,7 +14,7 @@ public class HW0205 {
 		String inputfile = JOptionPane.showInputDialog("파일 경로를 입력해주세요", "c:/dev");
 		File files = new File(inputfile);
 		File[] fList = files.listFiles();
-		
+
 		if (!files.exists()) {
 			JOptionPane.showMessageDialog(null, files + "은 존재하지 않습니다. 파일 경로나 파일명을 확인해주세요.");
 			return;
@@ -30,11 +30,7 @@ public class HW0205 {
 
 		File file = null;
 		for (int i = 0; i < fList.length; i++) {
-			if (fList[i].isFile()) {
-				file = fList[i];
-			} else if (fList[i].isDirectory()) {
-				file = fList[i];
-			}
+			file = fList[i];
 
 			// JTA에 파일 경로 추가
 			// 이름
@@ -45,12 +41,13 @@ public class HW0205 {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			jta.append(sdf.format(new Date(lastModified)) + "\t");
 
-			// 유형
-			jta.append(file.isFile() ? "파일\t" : "폴더\t");
-
-			// 크기
-			jta.append(file.length() + "byte\n");
-		}
+			// 폴더인지 파일인지
+			if (file.isDirectory()) {
+				jta.append("폴더\t\n");
+			} else {
+				jta.append("파일\t" + file.length() + "byte\n");
+			} // end if
+		} // end for
 
 		// 결과 띄우기
 		JOptionPane.showMessageDialog(null, jsp);
