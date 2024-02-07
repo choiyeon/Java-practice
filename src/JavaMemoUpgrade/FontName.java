@@ -1,4 +1,4 @@
-package day0131Homework;
+package JavaMemoUpgrade;
 
 /**
  * 글꼴의 이름에 대한 enumeration

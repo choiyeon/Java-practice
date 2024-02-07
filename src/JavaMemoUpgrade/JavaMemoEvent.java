@@ -1,13 +1,19 @@
-package day0131Homework;
+package JavaMemoUpgrade;
 
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
+
+import day0207.UserData;
 
 public class JavaMemoEvent extends WindowAdapter implements ActionListener {
 	
@@ -108,8 +114,24 @@ public class JavaMemoEvent extends WindowAdapter implements ActionListener {
 	/**
 	 * 종료
 	 * 메모장을 종료한다 
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
+	 * @throws ClassNotFoundException 
 	 */
-	private void closeMemo() {
+	private void closeMemo() throws IOException, ClassNotFoundException {
+		UserData ud = null;
+
+		// 1. 객체를 읽어 들일 수 있는 스트림 생성
+		ObjectInputStream ois = null;
+		try {
+			ois = new ObjectInputStream(new FileInputStream("c:/dev/temp/obj.txt"));
+			// 2. 객체를 읽어 들인다.
+			ud = (UserData) ois.readObject();
+		} finally {
+			if (ois != null) {
+				ois.close();
+			}
+		}
 		jmd.dispose();
 	} // closeMemo
 	

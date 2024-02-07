@@ -1,4 +1,4 @@
-package day0131Homework;
+package JavaMemoUpgrade;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package day0131Homework;
+package JavaMemoUpgrade;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;

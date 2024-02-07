@@ -1,4 +1,4 @@
-package day0131Homework;
+package JavaMemoUpgrade;
 
 public class RunHomeWork {
 

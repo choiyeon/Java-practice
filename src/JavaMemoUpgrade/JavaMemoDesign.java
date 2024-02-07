@@ -1,4 +1,4 @@
-package day0131Homework;
+package JavaMemoUpgrade;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
