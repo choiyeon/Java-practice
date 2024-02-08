@@ -11,19 +11,20 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import day0207.UserData;
 
 public class JavaMemoEvent extends WindowAdapter implements ActionListener {
-	
+
 	private JavaMemoDesign jmd;
 	private JMenuItem jmiNew, jmiOpen, jmiSave, jmiClose, jmiFont, jmiHelp;
 	private JTextArea jtaNote;
-	
+
 	public JavaMemoEvent(JavaMemoDesign jmd) {
 		this.jmd = jmd;
-		
+
 		this.jmiNew = jmd.getJmiNew();
 		this.jmiOpen = jmd.getJmiOpen();
 		this.jmiSave = jmd.getJmiSave();
@@ -35,118 +36,117 @@ public class JavaMemoEvent extends WindowAdapter implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if(ae.getSource() == jmiNew) {	// 새글
+		if (ae.getSource() == jmiNew) { // 새글
 			newMemo();
 		} // end if
-		if(ae.getSource() == jmiOpen) {	// 열기
+		if (ae.getSource() == jmiOpen) { // 열기
 			openMemo();
 		} // end if
-		if(ae.getSource() == jmiSave) {	// 저장
+		if (ae.getSource() == jmiSave) { // 저장
 			saveMemo();
 		} // end if
-		if(ae.getSource() == jmiClose) {// 종료
+		if (ae.getSource() == jmiClose) {// 종료
 			closeMemo();
 		} // end if
-		if(ae.getSource() == jmiFont) {	// 글꼴
+		if (ae.getSource() == jmiFont) { // 글꼴
 			fontDialog();
 		} // end if
-		if(ae.getSource() == jmiHelp) {	// 메모장 정보
+		if (ae.getSource() == jmiHelp) { // 메모장 정보
 			helpDialog();
 		} // end if
 	} // actionPerformed
-	
+
 	@Override
 	public void windowClosing(WindowEvent e) {
 		jmd.dispose();
 	} // windowClosing
-	
+
 	/**
-	 * 새글
-	 * JTA를 초기화한다
+	 * 새글 JTA를 초기화한다
 	 */
 	private void newMemo() {
-		jtaNote.setText("");
+		// 새글 클릭 시
+		// 문서에 내용이 없음. : 타이틀 바 "메모장 - 새글"로 설정
+		if (jtaNote.getText().isEmpty()) {
+			jmd.setTitle("메모장 - 새글");
+			System.out.println("타이틀 바 \"메모장 - 새글\"로 설정 ");
+		} else {
+			// 문서에 내용 있으면, 저장 후 초기화.
+			switch (JOptionPane.showConfirmDialog(null, "내용을 저장하시겠습니까?")) {
+			case JOptionPane.OK_OPTION:
+				saveMemo();
+				break;
+			case JOptionPane.NO_OPTION:
+				break;
+			case JOptionPane.CANCEL_OPTION:
+				return;
+			}//end switch
+		}//end else
+
+		// 원본 문서가 있는 경우. : 원본과 텍스트가 다르면 저장,
+		// 변동사항이 없으면 초기화.
+
 	} // newMemo
-	
+
 	/**
-	 * 열기
-	 * FileDialog를 “열기모드”로 생성하고
-	  선택한 파일의 “경로와 파일명”을 열기을 앞에 붙여
-	   “타이틀 바”에 설정한다.  => 열기 경로/파일명
+	 * 열기 FileDialog를 “열기모드”로 생성하고 선택한 파일의 “경로와 파일명”을 열기을 앞에 붙여 “타이틀 바”에 설정한다. => 열기
+	 * 경로/파일명
 	 */
 	private void openMemo() {
 //		if(jtaNote.is)
-		
+
 		FileDialog fdOpen = new FileDialog(jmd, "열기", FileDialog.LOAD);
 		fdOpen.setVisible(true);
 		String path = fdOpen.getDirectory();
 		String fName = fdOpen.getFile();
-		if(path == null) {
+		if (path == null) {
 			return;
 		} // end if
-		if(path.length() > 10) {
+		if (path.length() > 10) {
 			path = path.substring(0, 10).concat("...");
 		}
 		jmd.setTitle("열기 ".concat(path).concat(fName));
 	} // openMemo
-	
+
 	/**
-	 * 저장
-	 * FileDialog를 “저장모드”로 생성하고
-	  선택한 파일의 “경로와 파일명”을 저장을 앞에 붙여 
-	  “타이틀 바”에 설정한다. =>저장 경로/파일명
+	 * 저장 FileDialog를 “저장모드”로 생성하고 선택한 파일의 “경로와 파일명”을 저장을 앞에 붙여 “타이틀 바”에 설정한다. =>저장
+	 * 경로/파일명
 	 */
 	private void saveMemo() {
 		FileDialog fdSave = new FileDialog(jmd, "저장", FileDialog.SAVE);
 		fdSave.setVisible(true);
 		String path = fdSave.getDirectory();
 		String fName = fdSave.getFile();
-		if(path == null) {
+		if (path == null) {
 			return;
 		} // end if
-		if(path.length() > 10) {
+		if (path.length() > 10) {
 			path = path.substring(0, 10).concat("...");
 		} // end if
 		jmd.setTitle("저장 ".concat(path).concat(fName));
-		
-	} // saveMemo
-	
-	/**
-	 * 종료
-	 * 메모장을 종료한다 
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
-	 * @throws ClassNotFoundException 
-	 */
-	private void closeMemo() throws IOException, ClassNotFoundException {
-		UserData ud = null;
 
-		// 1. 객체를 읽어 들일 수 있는 스트림 생성
-		ObjectInputStream ois = null;
-		try {
-			ois = new ObjectInputStream(new FileInputStream("c:/dev/temp/obj.txt"));
-			// 2. 객체를 읽어 들인다.
-			ud = (UserData) ois.readObject();
-		} finally {
-			if (ois != null) {
-				ois.close();
-			}
-		}
+	} // saveMemo
+
+	/**
+	 * 종료 메모장을 종료한다
+	 * 
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 * @throws ClassNotFoundException
+	 */
+	private void closeMemo() {
 		jmd.dispose();
 	} // closeMemo
-	
+
 	/**
-	 * 글꼴
-	 * 다이얼로그를 현재 JTextArea의 
-   	글꼴 적용상태로 설정하여 보여준다
+	 * 글꼴 다이얼로그를 현재 JTextArea의 글꼴 적용상태로 설정하여 보여준다
 	 */
 	private void fontDialog() {
 		new MemoFontDesign(jmd);
 	} // fontDialog
-	
+
 	/**
-	 * 메모장 정보
- 	Dialog를 보여준다.
+	 * 메모장 정보 Dialog를 보여준다.
 	 */
 	private void helpDialog() {
 		new MemoHelpDesign(jmd);
