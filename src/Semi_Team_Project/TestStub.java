@@ -63,31 +63,6 @@ public class TestStub {
 				eri.getReqBooksErrRatio());
 	} // printRequirementsInfo
 
-	/**
-	 * 입력된 범위의 값만 계산해 출력
-	 * 
-	 * @param 시작 라인 startLog
-	 * @param 끝  라인 endLog
-	 * @return
-	 */
-	public String getRequirementsInfoIine(int startLog, int endLog) {
-		StringBuilder result = new StringBuilder();
-		
-		//값 잘 들어오는지 확인.
-//		System.out.println(startLog + "/" + endLog); //시작 & 끝 라인 값 잘 들어옴.
-		System.out.println("listLogInfo 사이즈 : " + listLogInfo.size());//listLogInfo.size()가 0으로 나옴
-
-		for (int i = startLog - 1; i < endLog && i < listLogInfo.size(); i++) {
-			LogInfoVO log = listLogInfo.get(i);
-			result.append("1. 최다 사용 키의 이름과 횟수: " + eri.getOftenKeyName() + " / " + eri.getOftenKeyNum());
-		}
-		
-		//JTextArea에 잘 들어감. 루프만 잘 돌면 될 듯.
-//		result.append("1. 최다 사용 키의 이름과 횟수: " + eri.getOftenKeyName() + " / " + eri.getOftenKeyNum());
-		
-		return result.toString();
-	}// getRequirementsInfoIine
-
 	public static void main(String[] args) {
 		new TestStub();
 	} // main
