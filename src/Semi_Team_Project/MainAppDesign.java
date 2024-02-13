@@ -1,12 +1,16 @@
 package Semi_Team_Project;
 
+import java.text.ParseException;
+
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 
+@SuppressWarnings("serial")
 public class MainAppDesign extends JFrame {
 	private JButton view;
 	private JButton lineView;
@@ -53,6 +57,17 @@ public class MainAppDesign extends JFrame {
 		startLog = new JFormattedTextField();
 		endLog = new JFormattedTextField();
 		
+		//숫자만 입력가능하게 하기 maskFormatter
+//		MaskFormatter maskFormatter = null;
+//		try {
+//			maskFormatter = new MaskFormatter("######");
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//
+//		startLog = new JFormattedTextField(maskFormatter);
+//		endLog = new JFormattedTextField(maskFormatter);
+		
 		JScrollPane jsp = new JScrollPane(info);
 		
 		setLayout(null);
@@ -60,13 +75,13 @@ public class MainAppDesign extends JFrame {
 		startLog.setBorder(new TitledBorder("시작 라인"));
 		endLog.setBorder(new TitledBorder("끝 라인"));
 		
-		startLog.setBounds(70, 500, 100, 50);
-		endLog.setBounds(770, 500, 100, 50);
+		startLog.setBounds(695, 500, 150, 50);
+		endLog.setBounds(695, 580, 150, 50);
 		jsp.setBounds(70, 70, 800, 400);
-		view.setBounds(70, 600, 250, 100);
-		lineView.setBounds(70, 750, 250, 100);
-		browse.setBounds(670, 600, 250, 100);
-		report.setBounds(370, 600, 250, 100);
+		view.setBounds(95, 500, 150, 100);
+		lineView.setBounds(695, 660, 150, 70);
+		browse.setBounds(495, 500, 150, 100);
+		report.setBounds(295, 500, 150, 100);
 		
 		//JFormattedTextField 초기화
 		startLog.setValue(0);

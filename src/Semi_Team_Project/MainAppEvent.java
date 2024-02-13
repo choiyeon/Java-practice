@@ -12,11 +12,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.text.MaskFormatter;
 
 import JavaMemoUpgrade.MemoHelpDesign;
 
@@ -142,10 +144,8 @@ public class MainAppEvent extends WindowAdapter implements ActionListener {
 
 			// 5. 각종 컴파일 예외 처리
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (LooksLikeNotLogFileException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // end catch
 
@@ -159,21 +159,36 @@ public class MainAppEvent extends WindowAdapter implements ActionListener {
 	public void printLineView() {
 		// JTextArea 초기화
 		md.getInfo().setText("");
-
+		
 		// JFormattedTextField에서 값을 가져옴
 		Integer startLogValue = (Integer) md.getStartLog().getValue();
 		Integer endLogValue = (Integer) md.getEndLog().getValue();
 
+		StringBuffer sb = new StringBuffer();
+
 		// null 여부 확인
 		if (startLogValue != null && endLogValue != null) {
-			//데이터 불러오기
+			// 데이터 불러오기
 			ReadLogFile();
 			ExtractRequirementsInfo eriPart = new ExtractRequirementsInfo(listLogInfo, startLogValue.intValue(),
 					endLogValue.intValue());
-			String requirementsInfo = "1. 최다 사용 키의 이름과 횟수: " + eriPart.getOftenKeyName() + " / "
-					+ eriPart.getOftenKeyNum();
+
+			sb.append("1. 최다 사용 키의 이름과 횟수: " + eriPart.getOftenKeyName() + " / " + eriPart.getOftenKeyNum() + "\n");
+			sb.append("2. 브라우저별 접속 횟수, 비율: " + "\n");
+			List<BrowserRatioVO> brvo = eriPart.getBrowserRatio();
+			for (BrowserRatioVO b : brvo) {
+				sb.append(String.format("\t%s: %d회, %.1f%%\n", b.getBrowser(), b.getCount(), b.getRatio()));
+			} // end for
+			sb.append("3. 서비스를 성공적으로 수행한(200) 횟수,실패(404) 횟수: " + eriPart.getService200() + " / "
+					+ eriPart.getService404() + "\n");
+			sb.append("4. 요청이 가장 많은 시간: " + eriPart.getOftenHour() + "시" + "\n");
+			sb.append(String.format("5. 비정상적인 요청(403)이 발생한 횟수,비율: %d / %.1f%%\n", eriPart.getService403(),
+					eriPart.getService403Ratio()));
+			sb.append(String.format("6. books에 대한 요청 URL중 에러(500)가 발생한 횟수, 비율: %d / %.1f%%\n",
+					eriPart.getReqBooksErrNum(), eriPart.getReqBooksErrRatio()));
 
 			// JTextArea에 정보 출력
+			String requirementsInfo = String.valueOf(sb);
 			md.getInfo().append(requirementsInfo);
 		} else {
 			// 값이 비어있을 경우 예외 처리 또는 메시지 출력

@@ -12,6 +12,8 @@ import java.net.Socket;
 import javax.swing.JOptionPane;
 
 public class SimpleServer {
+	
+	int bufferSize = 7000;
 
 	public void msgServer() throws IOException {
 		// 1. 서버소켓 생성
@@ -39,7 +41,11 @@ public class SimpleServer {
 				
 				
 				// 클라이언트의 메시지 받기
-				String clientMsg = dis.readUTF();
+				InputStream input = client.getInputStream();
+				byte[] b = new byte[bufferSize];
+				int readCnt = input.read(b);
+				String clientMsg = new String(b, 0, readCnt, "UTF-8");
+				System.out.println(clientMsg);
 				JOptionPane.showMessageDialog(null, "클라이언트의 메시지 " + clientMsg);
 			}//end while
 

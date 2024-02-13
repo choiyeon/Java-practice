@@ -185,7 +185,7 @@ public class ExtractRequirementsInfo {
 	 * @param key Map의 키
 	 * @param lineNo Map의 값인 List〈Integer〉에 추가할 정수
 	 */
-	public void addClassifiedDataToMap(Map<String, List<Integer>> map, String key, int lineNo) {
+	private void addClassifiedDataToMap(Map<String, List<Integer>> map, String key, int lineNo) {
 		if(map.containsKey(key)) {
 			map.get(key).add(lineNo);
 		} else {
@@ -203,7 +203,7 @@ public class ExtractRequirementsInfo {
 	 * @param key Map의 키
 	 * @param lineNo Map의 값인 List〈Integer〉에 추가할 정수
 	 */
-	public void addClassifiedDataToMap(Map<Integer, List<Integer>> map, int key, int lineNo) {
+	private void addClassifiedDataToMap(Map<Integer, List<Integer>> map, int key, int lineNo) {
 		if(map.containsKey(key)) {
 			map.get(key).add(lineNo);
 		} else {
@@ -221,7 +221,7 @@ public class ExtractRequirementsInfo {
 	 * @param key Map의 키
 	 * @param lineNo Map의 값인 List〈Integer〉에 추가할 정수
 	 */
-	public void addClassifiedDataToMap(Map<LocalDateTime, List<Integer>> map, LocalDateTime key, int lineNo) {
+	private void addClassifiedDataToMap(Map<LocalDateTime, List<Integer>> map, LocalDateTime key, int lineNo) {
 		if(map.containsKey(key)) {
 			map.get(key).add(lineNo);
 		} else {
@@ -372,7 +372,11 @@ public class ExtractRequirementsInfo {
 		default:
 			tempList = new LinkedList<Integer>(lists.get(0));
 			for (int i = 1; i < lenList; i++) {
-				tempList.retainAll(lists.get(i));
+				if(lists.get(i) == null) {
+					tempList.clear();					
+				} else {
+					tempList.retainAll(lists.get(i));
+				} // else
 			} // end for
 		} // end switch
 		
@@ -400,7 +404,11 @@ public class ExtractRequirementsInfo {
 		default:
 			tempList = new LinkedList<Integer>(lists[0]);
 			for (int i = 1; i < lenList; i++) {
-				tempList.retainAll(lists[i]);
+				if(lists[i] == null) {
+					tempList.clear();
+				} else {
+					tempList.retainAll(lists[i]);
+				} // end else
 			} // end for
 		} // end switch
 		
