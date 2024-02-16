@@ -58,8 +58,8 @@ public class LoginEvent extends WindowAdapter implements ActionListener {
 			UserVO currentUser = user.get(userId);
 			if (!currentUser.getPassword().equals(userPw)) {
 				JOptionPane.showMessageDialog(null, "비밀번호를 다시 입력해주세요");
-//				System.out.println(userId);
-//				System.out.println(userPw);
+				System.out.println(userId);
+				System.out.println(userPw);
 			} else {
 				ld.dispose();
 				new MainAppDesign(currentUser.isAdmin(), currentUser.getUserId());

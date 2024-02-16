@@ -1,6 +1,5 @@
 package semiTeamProject.View;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.io.IOException;
@@ -9,7 +8,6 @@ import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import semiTeamProject.Controller.MainAppEvent;
@@ -51,13 +49,12 @@ public class ViewDialog extends JDialog {
 		Font fontBorder = new Font("맑은 고딕",Font.BOLD,16);
 		Font font = new Font("맑은 고딕",Font.PLAIN,15);
 		
-		// 수정1
-		TitledBorder tb1 = new TitledBorder(new LineBorder(new Color(0x847DA1)), "최다 사용 키의 이름과 횟수");
-		TitledBorder tb2 = new TitledBorder(new LineBorder(new Color(0x847DA1)), "브라우저별 접속 횟수, 비율");
-		TitledBorder tb3 = new TitledBorder(new LineBorder(new Color(0x847DA1)), "서비스를 성공적으로 수행한(200) 횟수,실패(404) 횟수");
-		TitledBorder tb4 = new TitledBorder(new LineBorder(new Color(0x847DA1)), "요청이 가장 많은 시간");
-		TitledBorder tb5 = new TitledBorder(new LineBorder(new Color(0x847DA1)), "비정상적인 요청(403)이 발생한 횟수,비율");
-		TitledBorder tb6 = new TitledBorder(new LineBorder(new Color(0x847DA1)), "books에 대한 요청 URL중 에러(500)가 발생한 횟수, 비율");
+		TitledBorder tb1 = new TitledBorder("최다 사용 키의 이름과 횟수");
+		TitledBorder tb2 = new TitledBorder("브라우저별 접속 횟수, 비율");
+		TitledBorder tb3 = new TitledBorder("서비스를 성공적으로 수행한(200) 횟수,실패(404) 횟수");
+		TitledBorder tb4 = new TitledBorder("요청이 가장 많은 시간");
+		TitledBorder tb5 = new TitledBorder("비정상적인 요청(403)이 발생한 횟수,비율");
+		TitledBorder tb6 = new TitledBorder("books에 대한 요청 URL중 에러(500)가 발생한 횟수, 비율");
 		
 		JTextArea jta1 = new JTextArea();
 		JTextArea jta2 = new JTextArea();
@@ -87,15 +84,6 @@ public class ViewDialog extends JDialog {
 		jta5.setFont(font);
 		jta6.setFont(font);
 		
-		//// 수정2
-		Color backgroundColor = new Color(0xFDFCFF);
-		getContentPane().setBackground(backgroundColor);
-		jta1.setBackground(backgroundColor);
-		jta2.setBackground(backgroundColor);
-		jta3.setBackground(backgroundColor);
-		jta4.setBackground(backgroundColor);
-		jta5.setBackground(backgroundColor);
-		jta6.setBackground(backgroundColor);
 		
 		readLogFile();
 		
@@ -123,6 +111,7 @@ public class ViewDialog extends JDialog {
 		jta5.setEditable(false);
 		jta6.setEditable(false);
 		
+		
 		add(jta1);
 		add(jta2);
 		add(jta3);
@@ -130,9 +119,11 @@ public class ViewDialog extends JDialog {
 		add(jta5);
 		add(jta6);
 		
+		
+		
+		
 		setBounds(ad.getX()+210,ad.getY()+100,470,455);
 		setVisible(true);
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		
@@ -169,7 +160,7 @@ public class ViewDialog extends JDialog {
 		ExtractRequirementsInfo eri = ae.getEri();
 		
 		// 8. 데이터를 인스턴스 변수에 담기
-//		eri.printRequirementsInfo(); /////////////테스트용 출력메소드
+		eri.printRequirementsInfo(); /////////////테스트용 출력메소드
 		
 			// 8-1. 최다 사용 키의 이름과 횟수
 		data1 = eri.getOftenKeyName() + " / " + String.valueOf(eri.getOftenKeyNum());

@@ -138,7 +138,7 @@ public class MainAppDesign extends JFrame {
 		
 		
 		//색
-		Color backgroundColor = new Color(0xECEDFA);
+		Color backgroundColor = new Color(0xEAE6F1);
 		getContentPane().setBackground(backgroundColor);
 		startLog.setBackground(backgroundColor);
 		endLog.setBackground(backgroundColor);
@@ -152,7 +152,7 @@ public class MainAppDesign extends JFrame {
 		jmiUrlOption.addActionListener(me);
 		addWindowFocusListener(me);
 		
-		setBounds(550,100,800,715);
+		setBounds(550,100,800,850);
 		setVisible(true);
 		setResizable(false);//창 크기 변경 불가능
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -242,7 +242,7 @@ public class MainAppEvent extends WindowAdapter implements ActionListener {
 			eri = new ExtractRequirementsInfo(listLogInfo, indexStart, indexEnd);
 			flagChanged = true;
 		}
-//		System.out.println("check: " + indexStart + " / " + indexEnd);
+		System.out.println("check: " + indexStart + " / " + indexEnd);
 		return flagChanged;
 	}
 
