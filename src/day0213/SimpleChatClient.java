@@ -82,7 +82,8 @@ public class SimpleChatClient extends JFrame implements ActionListener, Runnable
 	private void connectToServer() throws UnknownHostException, IOException {
 		// 2. 소켓 생성 // 서버로 연결을 시도.
 //		someClient = new Socket("127.0.0.1", 2024);// loop back //192.168.10.
-		someClient = new Socket("192.168.10.219", 2024);// loop back //192.168.10.
+//		someClient = new Socket("192.168.10.219", 2024);// loop back //192.168.10.
+		someClient = new Socket("192.168.10.218", 2024);// loop back //192.168.10.
 
 		// 4. 데이터를 주고, 받을 수 있도록 스트림을 연결
 		disReadStream = new DataInputStream(someClient.getInputStream());

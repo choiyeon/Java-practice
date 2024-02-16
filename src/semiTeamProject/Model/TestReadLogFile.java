@@ -1,4 +1,4 @@
-package Semi_Team_Project;
+package semiTeamProject.Model;
 
 import java.io.IOException;
 import java.util.List;
@@ -91,7 +91,7 @@ public class TestReadLogFile {
 		// 8-1. 테스트용 콘솔 출력 메소드
 		eri.printRequirementsInfo();
 		
-		System.out.println("--------------------------------");
+//		System.out.println("--------------------------------");
 		
 		// 7-2. 분류된 데이터 일부분을 분석하여 요구사항이 요구하는 값 얻기
 		int indexStart = 499;

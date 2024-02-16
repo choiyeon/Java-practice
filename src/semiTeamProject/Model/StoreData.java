@@ -1,4 +1,4 @@
-package Semi_Team_Project;
+package semiTeamProject.Model;
 
 import java.io.FileInputStream;
 import java.io.BufferedReader;

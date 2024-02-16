@@ -1,4 +1,4 @@
-package Semi_Team_Project;
+package semiTeamProject.Model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,6 +29,11 @@ public class ClassifyLogLines {
 	} // ClassifyLogLines
 	
 	public ClassifyLogLines(List<String> lines, boolean strictUrlPattern) throws LooksLikeNotLogFileException {
+		
+		if(lines == null || lines.isEmpty()) {
+			throw new LooksLikeNotLogFileException("파일이 열리지 않았거나 빈 파일입니다");
+		} // end if
+		
 		logInfo = new ArrayList<LogInfoVO>();
 		
 		String patternLog = "\\[(\\d{3})\\]\\[[a-zA-Z:/.]+/([a-zA-Z0-9]+)[?]key=([a-zA-Z0-9]+)&[a-zA-Z0-9=]+\\]\\[([a-zA-Z0-9]+)\\]\\[(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2})";
@@ -58,7 +63,10 @@ public class ClassifyLogLines {
 		} // end while
 		
 //		System.out.println("패턴매칭한 데이터 줄 수: " + logInfo.size());
-		
+		switch(logInfo.size()) {
+		case 0:
+			throw new LooksLikeNotLogFileException();
+		} // end switch 
 	} // ReadLogFile
 	
 	public String getKeyFromAbnormalUrl(String url) {
